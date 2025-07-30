@@ -3,6 +3,9 @@ package strategy_pattern.strategies;
 import java.io.*;
 import java.util.*;
 
+/**
+ * 카카오 페이 결제 방식을 구현하는 Concrete strategy
+ */
 public class PayByKakaoPay implements PayStrategy {
     private static final Map<String, String> DATA_BASE = new HashMap<>();
     private final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -15,6 +18,9 @@ public class PayByKakaoPay implements PayStrategy {
         DATA_BASE.put("qwerty", "test2@test.com");
     }
 
+    /**
+     * 사용자 데이터 입력 받기
+     */
     @Override
     public void collectPaymentDetails() {
         try {
@@ -41,6 +47,9 @@ public class PayByKakaoPay implements PayStrategy {
         return signedIn;
     }
 
+    /**
+     * 추후 결제 시도를 위한 사용자 데이터 저장
+     */
     @Override
     public boolean pay(int paymentAmount) {
         if(signedIn) {

@@ -2,6 +2,9 @@ package strategy_pattern.strategies;
 
 import java.io.*;
 
+/**
+ * 신용카드 결제 방식을 구현하는 Concrete strategy
+ */
 public class PayByCreditCard implements PayStrategy {
     private final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     private CreditCard card;
@@ -16,12 +19,17 @@ public class PayByCreditCard implements PayStrategy {
             System.out.println("CVV 번호를 입력해주세요: ");
             String cvv = br.readLine();
             card = new CreditCard(number, date, cvv);
+
+            // 카드 번호 검증 ...
         }
         catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * 카드 검증 후에 사용자에게 카드 결제 청구 가능
+     */
     @Override
     public boolean pay(int paymentAmount) {
         if(cardIsPresent()) {
